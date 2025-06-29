@@ -1,0 +1,21 @@
+CREATE DATABASE registrar;
+
+USE registrar;
+
+
+CREATE TABLE students (
+  student_number VARCHAR(20) PRIMARY KEY,
+  name VARCHAR(100),
+  course VARCHAR(100),
+  year_level VARCHAR(20)
+);
+
+CREATE TABLE requests (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  student_number VARCHAR(20),
+  document_request ENUM('COR','COE','COG') NOT NULL,
+  request_status ENUM('pending','processing','completed') DEFAULT 'pending',
+  request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (student_number) REFERENCES students(student_number) ON DELETE CASCADE
+);
+
