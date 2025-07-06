@@ -13,6 +13,10 @@ if (!$request) {
     die('Request not found.');
 }
 
+if ($request['request_status'] !== 'completed') {
+    die('This request has not been approved yet.');
+}
+
 // Choose template file based on document_request
 switch ($request['document_request']) {
     case 'COR':
